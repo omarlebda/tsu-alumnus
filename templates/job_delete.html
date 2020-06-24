@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+	Delete a job
+{% endblock title %}
+
+
+{% block content %}
+<div class="container">
+	<h1>Delete a degree</h1>
+	<form method="post">{% csrf_token %}
+		{{ form|crispy }}
+		<p>Are you sure you want to delete "{{ job.position }}"</p>
+		<input class="btn btn-danger" type="submit" value='Delete'>
+	</form>
+</div>
+{% endblock content %}

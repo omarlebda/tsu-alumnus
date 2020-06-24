@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}
+Alumni List
+{% endblock title %}
+
+
+{% block content %}
+<div class="container">
+	<ul>
+		{% for alumni in alumni_list %}
+			<li>{{ alumni }}</li>
+		{% endfor %}
+	</ul>
+</div>
+{% endblock content %}

@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Alumni List
+{% endblock title %}
+
+
+{% block content %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'home' %}">Home</a>
+      </li>
+      {% if user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'AlumniDetail' user.id %}">Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+      </li>
+      {% else %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'login' %}">Log In</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
+      </li>
+      {% endif %}
+    </ul>
+  </div>
+</nav>
+<div class="container">
+	<div class="mt-5 mb-5">
+		 <form method="GET" action="{% url 'SearchList' %}" class="form my-2 my-lg-0">
+	      <input name="q" class="form-control" type="search" placeholder="Search" aria-label="Search">
+	      <span class="input-group-btn py-2">
+	      	<button class="btn btn-outline-success" type="submit">Search</button>
+	      </span>
+	    </form>
+    </div>
+	<h3>Search Results</h3>
+	<div class="row">
+	{% for alumni in search_list %}
+		<div class="card col-sm-12 col-md-3" style="width: 18rem; height: 22rem">
+		  <img src="{{alumni.image.url}}" class="card-img-top" style="height: 70%;">
+		  <div class="card-body">
+		    <h5 class="card-title">{{ alumni }}</h5>
+		    <a href="{% url 'AlumniDetail' alumni.pk %}" class="btn btn-primary">Visit Profile</a>
+		  </div>
+		</div>
+	{% endfor %}
+	</div>
+	
+</div>
+{% endblock content %}
