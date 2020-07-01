@@ -25,8 +25,18 @@ Alumni Detail
     <header>
       <img src="{{alumni.image.url}}" alt="John Doe" class="profile-image">
       <h1 class="tag name">Hello, I’m {{ alumni.user }}.</h1>
-      <p class="tag location">My home is New York, California.</p>
+      <p class="tag location">Welcome to my profile</p>
     </header>
+    <div class="container mt-5">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Personal Information:</h5>
+          <p class="card-text"><b>First Name:</b> {{ alumni.user.first_name }}</p>
+          <p class="card-text"><b>Last Name: </b>{{ alumni.user.last_name }}</p>
+          <p class="card-text"><b>Email:</b> {{ alumni.user.email }}</p>
+        </div>
+      </div>
+    </div>
     <div class="container mt-5">
       {% if user.id == alumni.id  %}
       <h3>Degrees</h3>
